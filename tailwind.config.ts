@@ -7,6 +7,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1.25rem',
+          sm: '1.5rem',
+          md: '2rem',
+          lg: '2rem',
+        },
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+        },
+      },
       colors: {
         'brand-dark': '#1A130E',
         'brand-bronze': '#7B5A2D',

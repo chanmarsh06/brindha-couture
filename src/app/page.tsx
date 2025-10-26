@@ -19,29 +19,29 @@ export default function Home() {
       <ServicesGrid services={services} />
       <TestimonialsCarousel testimonials={testimonials} />
 
-      <section className="py-16 md:py-24 bg-brand-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-4">
-              <div className="text-5xl md:text-6xl font-bold text-brand-gold">8+</div>
-              <h3 className="text-2xl font-serif text-brand-cream">Years of Excellence</h3>
-              <p className="text-brand-cream/70">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-brand-dark">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 text-center">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-gold">8+</div>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-serif text-brand-cream">Years of Excellence</h3>
+              <p className="text-xs sm:text-sm md:text-base text-brand-cream/70">
                 Perfecting our craft and techniques since our inception
               </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="text-5xl md:text-6xl font-bold text-brand-gold">500+</div>
-              <h3 className="text-2xl font-serif text-brand-cream">Happy Clients</h3>
-              <p className="text-brand-cream/70">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-gold">500+</div>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-serif text-brand-cream">Happy Clients</h3>
+              <p className="text-xs sm:text-sm md:text-base text-brand-cream/70">
                 Trusted by families and individuals across the city
               </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="text-5xl md:text-6xl font-bold text-brand-gold">100%</div>
-              <h3 className="text-2xl font-serif text-brand-cream">Satisfaction</h3>
-              <p className="text-brand-cream/70">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-gold">100%</div>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-serif text-brand-cream">Satisfaction</h3>
+              <p className="text-xs sm:text-sm md:text-base text-brand-cream/70">
                 Every garment tailored to perfection with care
               </p>
             </div>
@@ -49,30 +49,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gradient-brand relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-brand relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-brand-lightgold rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-brand-lightgold rounded-full blur-3xl"></div>
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-brand-cream mb-6">
+        <div className="relative container mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-cream mb-4 sm:mb-6">
             Ready to Transform Your Wardrobe?
           </h2>
-          <p className="text-lg text-brand-cream/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-cream/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
             Let us create something beautiful for you. From custom kids' dresses to intricate embroidery, we're here to
             bring your vision to life.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2">
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-brand-dark bg-gradient-to-r from-brand-gold to-brand-lightgold hover:shadow-glow transition-smooth"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-full font-semibold text-brand-dark bg-gradient-to-r from-brand-gold to-brand-lightgold hover:shadow-glow transition-smooth"
             >
               Book Your Appointment
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-brand-cream border-2 border-brand-gold hover:bg-brand-gold/10 transition-smooth"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-full font-semibold text-brand-cream border-2 border-brand-gold hover:bg-brand-gold/10 transition-smooth"
             >
               Get in Touch
             </Link>

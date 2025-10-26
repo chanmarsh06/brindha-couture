@@ -85,9 +85,9 @@ const ContactForm = () => {
       viewport={{ once: true }}
       className="space-y-6"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Full Name
           </label>
           <input
@@ -96,7 +96,7 @@ const ContactForm = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.name ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="Your name"
@@ -104,12 +104,12 @@ const ContactForm = () => {
             required
           />
           {errors.name && (
-            <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.name}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Email Address
           </label>
           <input
@@ -118,7 +118,7 @@ const ContactForm = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.email ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="your@email.com"
@@ -126,12 +126,12 @@ const ContactForm = () => {
             required
           />
           {errors.email && (
-            <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
           )}
         </div>
 
         <div className="md:col-span-2">
-          <label htmlFor="phone" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="phone" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Phone Number
           </label>
           <input
@@ -140,7 +140,7 @@ const ContactForm = () => {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.phone ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="+91 9876543210"
@@ -148,13 +148,13 @@ const ContactForm = () => {
             required
           />
           {errors.phone && (
-            <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
           )}
         </div>
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-semibold text-brand-gold mb-2">
+        <label htmlFor="subject" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
           Subject
         </label>
         <input
@@ -163,7 +163,7 @@ const ContactForm = () => {
           name="subject"
           value={formData.subject}
           onChange={handleInputChange}
-          className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
             errors.subject ? 'border-red-500' : 'border-brand-gold/30'
           } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
           placeholder="What is this about?"
@@ -171,12 +171,12 @@ const ContactForm = () => {
           required
         />
         {errors.subject && (
-          <p className="text-red-400 text-sm mt-1">{errors.subject}</p>
+          <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-brand-gold mb-2">
+        <label htmlFor="message" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
           Message
         </label>
         <textarea
@@ -184,7 +184,7 @@ const ContactForm = () => {
           name="message"
           value={formData.message}
           onChange={handleInputChange}
-          className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
             errors.message ? 'border-red-500' : 'border-brand-gold/30'
           } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth resize-none`}
           placeholder="Your message..."
@@ -193,7 +193,7 @@ const ContactForm = () => {
           required
         />
         {errors.message && (
-          <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+          <p className="text-red-400 text-xs mt-1">{errors.message}</p>
         )}
       </div>
 
@@ -202,7 +202,7 @@ const ContactForm = () => {
         disabled={isLoading}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-2 sm:py-3 text-xs sm:text-base rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Submit contact form"
       >
         {isLoading ? 'Sending...' : 'Send Message'}

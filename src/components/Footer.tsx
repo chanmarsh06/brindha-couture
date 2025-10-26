@@ -43,24 +43,24 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-brand-dark border-t border-brand-gold/20 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-brand-dark border-t border-brand-gold/20 mt-12 sm:mt-16 md:mt-20">
+      <div className="container mx-auto py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="text-3xl font-serif font-bold text-brand-gold">✨</div>
+            <Link href="/" className="flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-brand-gold">✨</div>
               <div>
-                <div className="text-brand-gold font-serif text-lg font-semibold">
+                <div className="text-brand-gold font-serif text-sm sm:text-lg font-semibold">
                   Bindu's Stitching
                 </div>
-                <p className="text-brand-lightgold text-sm">Elegant Crafts</p>
+                <p className="text-brand-lightgold text-xs sm:text-sm">Elegant Crafts</p>
               </div>
             </Link>
-            <p className="text-brand-cream/70 text-sm">
+            <p className="text-xs sm:text-sm text-brand-cream/70">
               Creating beautiful, custom-tailored garments with precision and passion.
             </p>
           </motion.div>
@@ -72,13 +72,13 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
-              <h4 className="text-brand-gold font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-2">
+              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-xs sm:text-base">{section.title}</h4>
+              <ul className="space-y-1 sm:space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-brand-cream/70 hover:text-brand-gold transition-smooth text-sm"
+                      className="text-xs sm:text-sm text-brand-cream/70 hover:text-brand-gold transition-smooth"
                     >
                       {link.label}
                     </Link>
@@ -89,18 +89,18 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="border-t border-brand-gold/20 pt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
+        <div className="border-t border-brand-gold/20 pt-6 sm:pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 items-center text-center sm:text-left">
             <div>
-              <h4 className="text-brand-gold font-semibold mb-4">Connect With Us</h4>
-              <div className="flex gap-4">
+              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-xs sm:text-base">Connect With Us</h4>
+              <div className="flex gap-3 sm:gap-4 justify-center sm:justify-start">
                 {socialLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl hover:scale-110 transition-transform"
+                    className="text-xl sm:text-2xl hover:scale-110 transition-transform"
                     aria-label={link.label}
                   >
                     {link.icon}
@@ -108,11 +108,11 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-            <div className="text-right text-brand-cream/70 text-sm">
+            <div className="text-xs sm:text-sm text-brand-cream/70">
               <p>
                 &copy; {currentYear} Bindu's Stitching. All rights reserved.
               </p>
-              <p className="mt-2">Designed with ❤️ for elegance and craftsmanship.</p>
+              <p className="mt-1 sm:mt-2">Designed with ❤️ for elegance and craftsmanship.</p>
             </div>
           </div>
         </div>

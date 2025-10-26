@@ -19,25 +19,25 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md soft-shadow">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="text-3xl font-serif font-bold text-brand-gold group-hover:text-brand-lightgold transition-smooth">
+      <nav className="container mx-auto py-3 sm:py-4 flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-1 sm:gap-2 group flex-shrink-0">
+          <div className="text-2xl sm:text-3xl font-serif font-bold text-brand-gold group-hover:text-brand-lightgold transition-smooth">
             ✨
           </div>
-          <div className="flex flex-col">
-            <span className="text-brand-gold font-serif text-lg font-semibold hidden sm:inline">
+          <div className="flex flex-col hidden sm:block">
+            <span className="text-brand-gold font-serif text-sm md:text-lg font-semibold">
               Bindu's Stitching
             </span>
-            <span className="text-brand-lightgold text-xs hidden sm:inline">Elegant Crafts</span>
+            <span className="text-brand-lightgold text-xs">Elegant Crafts</span>
           </div>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-brand-cream hover:text-brand-gold transition-smooth relative group"
+              className="text-sm lg:text-base text-brand-cream hover:text-brand-gold transition-smooth relative group"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-gold to-accent-green group-hover:w-full transition-all duration-300"></span>
@@ -47,7 +47,7 @@ const Header = () => {
             href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2 rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark font-semibold hover:shadow-glow transition-smooth"
+            className="px-4 lg:px-6 py-2 rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark text-sm lg:text-base font-semibold hover:shadow-glow transition-smooth"
             aria-label="Contact via WhatsApp"
           >
             WhatsApp
@@ -56,12 +56,12 @@ const Header = () => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth"
+          className="md:hidden p-2 text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth flex-shrink-0"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5 sm:w-6 sm:h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -92,12 +92,12 @@ const Header = () => {
           exit={{ opacity: 0, y: -10 }}
           className="md:hidden bg-brand-dark/98 border-t border-brand-gold/20"
         >
-          <div className="px-4 py-4 space-y-3">
+          <div className="container mx-auto py-3 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-2 text-brand-cream hover:text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth"
+                className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-brand-cream hover:text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -107,7 +107,7 @@ const Header = () => {
               href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark font-semibold hover:shadow-glow transition-smooth"
+              className="block w-full text-center px-3 sm:px-4 py-2 text-sm sm:text-base rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark font-semibold hover:shadow-glow transition-smooth"
               onClick={() => setIsOpen(false)}
             >
               WhatsApp

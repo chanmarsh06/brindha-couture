@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <>
-      <section className="gradient-brand py-12 md:py-16 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-brand-cream mb-4">
+      <section className="gradient-brand py-12 sm:py-14 md:py-16 lg:py-20 mt-14 sm:mt-16">
+        <div className="container mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-cream mb-3 sm:mb-4">
             Our Portfolio
           </h1>
-          <p className="text-lg text-brand-cream/80 max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-cream/80 max-w-2xl">
             Explore our collection of beautifully crafted garments and embroidery work.
           </p>
         </div>

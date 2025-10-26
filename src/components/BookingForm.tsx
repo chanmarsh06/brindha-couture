@@ -115,9 +115,9 @@ const BookingForm = () => {
       viewport={{ once: true }}
       className="space-y-6"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Full Name
           </label>
           <input
@@ -126,7 +126,7 @@ const BookingForm = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.name ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="Your name"
@@ -134,12 +134,12 @@ const BookingForm = () => {
             required
           />
           {errors.name && (
-            <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.name}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Email Address
           </label>
           <input
@@ -148,7 +148,7 @@ const BookingForm = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.email ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="your@email.com"
@@ -156,12 +156,12 @@ const BookingForm = () => {
             required
           />
           {errors.email && (
-            <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="phone" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Phone Number
           </label>
           <input
@@ -170,7 +170,7 @@ const BookingForm = () => {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.phone ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
             placeholder="+91 9876543210"
@@ -178,12 +178,12 @@ const BookingForm = () => {
             required
           />
           {errors.phone && (
-            <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="service" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="service" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Select Service
           </label>
           <select
@@ -191,7 +191,7 @@ const BookingForm = () => {
             name="service"
             value={formData.service}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.service ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
             aria-label="Service selection"
@@ -199,18 +199,18 @@ const BookingForm = () => {
           >
             <option value="">Choose a service...</option>
             {services.map((service) => (
-              <option key={service} value={service} className="bg-brand-dark">
+              <option key={service} value={service} className="bg-brand-dark text-xs sm:text-base">
                 {service}
               </option>
             ))}
           </select>
           {errors.service && (
-            <p className="text-red-400 text-sm mt-1">{errors.service}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.service}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="date" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="date" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Preferred Date
           </label>
           <input
@@ -219,19 +219,19 @@ const BookingForm = () => {
             name="date"
             value={formData.date}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.date ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
             aria-label="Preferred date"
             required
           />
           {errors.date && (
-            <p className="text-red-400 text-sm mt-1">{errors.date}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.date}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="time" className="block text-sm font-semibold text-brand-gold mb-2">
+          <label htmlFor="time" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
             Preferred Time
           </label>
           <input
@@ -240,29 +240,29 @@ const BookingForm = () => {
             name="time"
             value={formData.time}
             onChange={handleInputChange}
-            className={`w-full px-4 py-3 rounded-lg bg-brand-dark border ${
+            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
               errors.time ? 'border-red-500' : 'border-brand-gold/30'
             } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
             aria-label="Preferred time"
             required
           />
           {errors.time && (
-            <p className="text-red-400 text-sm mt-1">{errors.time}</p>
+            <p className="text-red-400 text-xs mt-1">{errors.time}</p>
           )}
         </div>
       </div>
 
       <div>
-        <label htmlFor="file" className="block text-sm font-semibold text-brand-gold mb-2">
+        <label htmlFor="file" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
           Upload Measurements (Optional)
         </label>
         <label
           htmlFor="file"
-          className="flex items-center justify-center w-full px-4 py-6 rounded-lg bg-brand-dark border-2 border-dashed border-brand-gold/50 cursor-pointer hover:border-brand-gold transition-smooth"
+          className="flex items-center justify-center w-full px-3 sm:px-4 py-4 sm:py-6 rounded-lg bg-brand-dark border-2 border-dashed border-brand-gold/50 cursor-pointer hover:border-brand-gold transition-smooth"
         >
           <div className="text-center">
-            <p className="text-brand-cream/70">
-              {file ? `📎 ${file.name}` : '📁 Click to upload or drag and drop'}
+            <p className="text-xs sm:text-sm text-brand-cream/70">
+              {file ? `📎 ${file.name.substring(0, 20)}...` : '📁 Click to upload or drag'}
             </p>
             <p className="text-brand-cream/50 text-xs mt-1">PDF, PNG, JPG (Max 5MB)</p>
           </div>
@@ -278,7 +278,7 @@ const BookingForm = () => {
       </div>
 
       <div>
-        <label htmlFor="notes" className="block text-sm font-semibold text-brand-gold mb-2">
+        <label htmlFor="notes" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
           Additional Notes
         </label>
         <textarea
@@ -286,7 +286,7 @@ const BookingForm = () => {
           name="notes"
           value={formData.notes}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-lg bg-brand-dark border border-brand-gold/30 text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth resize-none"
+          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border border-brand-gold/30 text-xs sm:text-base text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth resize-none"
           placeholder="Any special requirements or design preferences..."
           rows={4}
           aria-label="Additional notes"
@@ -298,7 +298,7 @@ const BookingForm = () => {
         disabled={isLoading}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-2 sm:py-3 text-xs sm:text-base rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Submit booking form"
       >
         {isLoading ? 'Submitting...' : 'Book Appointment'}
