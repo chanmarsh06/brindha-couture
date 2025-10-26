@@ -44,7 +44,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-brand-dark border-t border-brand-gold/20 mt-12 sm:mt-16 md:mt-20">
-      <div className="container mx-auto py-8 sm:py-12">
+      <div className="container py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

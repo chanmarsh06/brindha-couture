@@ -26,7 +26,7 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
         <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-brand-gold rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative container mx-auto">
+      <div className="relative container">
         <motion.div
           className="text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -34,10 +34,10 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-cream mb-2 sm:mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-brand-cream mb-2 sm:mb-4">
             Our Portfolio
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-brand-cream/70">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-cream/70">
             Explore our latest creations and finest work
           </p>
         </motion.div>

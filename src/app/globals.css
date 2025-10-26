@@ -51,20 +51,12 @@ body {
   box-shadow: 0 8px 30px rgba(15, 10, 8, 0.35);
 }
 
-/* .container {
+.container {
   @apply w-full mx-auto;
-  max-width: 1200px;
+  width: 80%;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-} */
-
-.container {
-   @apply w-full mx-auto;
-  width: 80%;      /* set width to 70% */
-  padding-left: 1.25rem;  /* optional padding */
-  padding-right: 1.25rem; /* optional padding */
 }
-
 
 @screen sm {
   .container {

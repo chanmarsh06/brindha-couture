@@ -37,7 +37,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <FloatingWhatsAppCTA />
+        <FloatingWhatsAppCTA />  {/* chat bot  */} 
       </body>
     </html>
   );

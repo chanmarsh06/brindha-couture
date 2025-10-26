@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Brand from "@/asset/brindha-couture-logo.png"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,16 +20,22 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md soft-shadow">
-      <nav className="container mx-auto py-3 sm:py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-1 sm:gap-2 group flex-shrink-0">
-          <div className="text-2xl sm:text-3xl font-serif font-bold text-brand-gold group-hover:text-brand-lightgold transition-smooth">
-            ✨
+      <nav className="container py-3 sm:py-4 flex justify-between items-center">
+        {/* ✅ Fixed: Removed nested <Link> */}
+        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
+          {/* Logo Image */}
+          <div className="w-10 sm:w-12">
+            <img src={Brand.src} alt="Bindu's Stitching Logo" className="w-full h-auto" />
           </div>
-          <div className="flex flex-col hidden sm:block">
+
+          {/* Branding Text */}
+          <div className="hidden sm:flex flex-col">
             <span className="text-brand-gold font-serif text-sm md:text-lg font-semibold">
-              Bindu's Stitching
+              Bindu's Couture
             </span>
-            <span className="text-brand-lightgold text-xs">Elegant Crafts</span>
+            <span className="text-brand-lightgold text-xs">
+              Elegant Crafts
+            </span>
           </div>
         </Link>
 
@@ -92,7 +99,7 @@ const Header = () => {
           exit={{ opacity: 0, y: -10 }}
           className="md:hidden bg-brand-dark/98 border-t border-brand-gold/20"
         >
-          <div className="container mx-auto py-3 space-y-2">
+          <div className="container py-3 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

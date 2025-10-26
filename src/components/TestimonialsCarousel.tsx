@@ -33,18 +33,18 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-green rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-brand-cream mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-brand-cream mb-3 sm:mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-brand-cream/70">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-cream/70">
             Trusted by hundreds of satisfied customers
           </p>
         </motion.div>
@@ -57,11 +57,11 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="bg-brand-bronze/30 backdrop-blur-sm rounded-3xl soft-shadow border border-brand-gold/30 p-8 md:p-12"
+              className="bg-brand-bronze/30 backdrop-blur-sm rounded-2xl sm:rounded-3xl soft-shadow border border-brand-gold/30 p-4 sm:p-6 md:p-8 lg:p-12"
             >
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-center">
                 {testimonials[current].image && (
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 flex-shrink-0">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-gold to-accent-green p-1">
                       <div className="relative w-full h-full rounded-full overflow-hidden bg-brand-dark">
                         <Image
@@ -76,21 +76,21 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
                 )}
 
                 <div className="flex-1 text-center md:text-left">
-                  <div className="flex justify-center md:justify-start gap-1 mb-4">
+                  <div className="flex justify-center md:justify-start gap-1 mb-3 sm:mb-4">
                     {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                      <span key={i} className="text-2xl">⭐</span>
+                      <span key={i} className="text-lg sm:text-xl md:text-2xl">⭐</span>
                     ))}
                   </div>
 
-                  <p className="text-lg md:text-xl text-brand-cream/90 mb-4 italic">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-brand-cream/90 mb-3 sm:mb-4 italic">
                     "{testimonials[current].message}"
                   </p>
 
                   <div>
-                    <p className="font-semibold text-brand-lightgold">
+                    <p className="font-semibold text-brand-lightgold text-sm sm:text-base">
                       {testimonials[current].name}
                     </p>
-                    <p className="text-brand-cream/70 text-sm">
+                    <p className="text-brand-cream/70 text-xs sm:text-sm">
                       {testimonials[current].role}
                     </p>
                   </div>
@@ -99,24 +99,24 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center justify-between mt-8">
+          <div className="flex items-center justify-between mt-6 sm:mt-8">
             <button
               onClick={goToPrevious}
-              className="p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
+              className="p-2 sm:p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
               aria-label="Previous testimonial"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               {testimonials.map((_, idx) => (
                 <motion.button
                   key={idx}
                   onClick={() => setCurrent(idx)}
-                  className={`w-3 h-3 rounded-full transition-smooth ${
-                    idx === current ? 'bg-brand-gold w-8' : 'bg-brand-gold/30 hover:bg-brand-gold/60'
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-smooth ${
+                    idx === current ? 'bg-brand-gold w-6 sm:w-8' : 'bg-brand-gold/30 hover:bg-brand-gold/60'
                   }`}
                   aria-label={`Go to testimonial ${idx + 1}`}
                   whileHover={{ scale: 1.2 }}
@@ -126,10 +126,10 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
 
             <button
               onClick={goToNext}
-              className="p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
+              className="p-2 sm:p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
               aria-label="Next testimonial"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
