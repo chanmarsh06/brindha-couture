@@ -1,65 +1,84 @@
-import Image from "next/image";
+import { Metadata } from 'next';
+import Hero from '@/components/Hero';
+import ServicesGrid from '@/components/ServicesGrid';
+import TestimonialsCarousel from '@/components/TestimonialsCarousel';
+import { services } from '@/data/services';
+import { testimonials } from '@/data/testimonials';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Home | Bindu\'s Stitching - Expert Tailoring & Embroidery',
+  description:
+    'Welcome to Bindu\'s Stitching. Custom tailoring for kids\' dresses, blouses, and intricate Aari embroidery. 8+ years of expert craftsmanship.',
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Hero />
+      <ServicesGrid services={services} />
+      <TestimonialsCarousel testimonials={testimonials} />
+
+      <section className="py-16 md:py-24 bg-brand-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="space-y-4">
+              <div className="text-5xl md:text-6xl font-bold text-brand-gold">8+</div>
+              <h3 className="text-2xl font-serif text-brand-cream">Years of Excellence</h3>
+              <p className="text-brand-cream/70">
+                Perfecting our craft and techniques since our inception
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="text-5xl md:text-6xl font-bold text-brand-gold">500+</div>
+              <h3 className="text-2xl font-serif text-brand-cream">Happy Clients</h3>
+              <p className="text-brand-cream/70">
+                Trusted by families and individuals across the city
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="text-5xl md:text-6xl font-bold text-brand-gold">100%</div>
+              <h3 className="text-2xl font-serif text-brand-cream">Satisfaction</h3>
+              <p className="text-brand-cream/70">
+                Every garment tailored to perfection with care
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-gradient-brand relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-brand-lightgold rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-brand-cream mb-6">
+            Ready to Transform Your Wardrobe?
+          </h2>
+          <p className="text-lg text-brand-cream/80 mb-8 max-w-2xl mx-auto">
+            Let us create something beautiful for you. From custom kids' dresses to intricate embroidery, we're here to
+            bring your vision to life.
           </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/booking"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-brand-dark bg-gradient-to-r from-brand-gold to-brand-lightgold hover:shadow-glow transition-smooth"
+            >
+              Book Your Appointment
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-brand-cream border-2 border-brand-gold hover:bg-brand-gold/10 transition-smooth"
+            >
+              Get in Touch
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
