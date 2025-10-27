@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface Service {
   id: string;
   title: string;
@@ -12,9 +14,9 @@ export interface PortfolioItem {
   id: string;
   title: string;
   category: string;
-  image: string;
+   image: string | StaticImageData;
   description: string;
-  fullImage?: string;
+  fullImage?:string | StaticImageData;
 }
 
 export interface Testimonial {
@@ -45,7 +47,7 @@ export interface BlogPost {
   publishedAt: string;
   author: string;
   category: string;
-  image: string;
+  image: string | StaticImageData;
   readTime: string;
 }
 

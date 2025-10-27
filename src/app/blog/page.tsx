@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blog';
 
+import ImageManager from '@/components/ImageManager';
+
 export const metadata: Metadata = {
   title: 'Blog | Bindu\'s Stitching',
   description: 'Read tips, guides, and inspiration for custom tailoring and embroidery work.',
@@ -33,7 +35,7 @@ export default function BlogPage() {
                 className="bg-brand-bronze/20 rounded-2xl soft-shadow border border-brand-gold/20 overflow-hidden hover:border-brand-gold/50 transition-smooth group"
               >
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-brand-gold/10 to-accent-green/10">
-                  <Image
+                  <ImageManager
                     src={post.image}
                     alt={post.title}
                     fill

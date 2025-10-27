@@ -19,6 +19,7 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
     selectedCategory === 'All' ? items : items.filter((item) => item.category === selectedCategory);
 
   const selectedItem = items.find((item) => item.id === selectedId);
+ 
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-brand-dark relative overflow-hidden">
@@ -96,51 +97,57 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
         </motion.div>
       </div>
 
-      <AnimatePresence>
-        {selectedItem && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedId(null)}
-            className="fixed inset-0 bg-brand-dark/95 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-xl sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh]"
-            >
-              <button
-                onClick={() => setSelectedId(null)}
-                className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center hover:bg-brand-lightgold transition-smooth text-lg sm:text-xl md:text-2xl"
-                aria-label="Close lightbox"
-              >
-                ✕
-              </button>
+     <AnimatePresence>
+  {selectedItem && (
+    <motion.div
+      key="lightbox"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setSelectedId(null)}
+      className="fixed inset-0 bg-brand-dark/95 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
+    >
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-xl sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh]"
+      >
+        <button
+          onClick={() => setSelectedId(null)}
+          className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center hover:bg-brand-lightgold transition-smooth text-lg sm:text-xl md:text-2xl"
+          aria-label="Close lightbox"
+        >
+          ✕
+        </button>
 
-              <div className="relative w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden">
-                <Image
-                  src={selectedItem.fullImage || selectedItem.image}
-                  alt={selectedItem.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              <div className="bg-brand-bronze/40 backdrop-blur-sm p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-2xl md:text-3xl font-serif font-bold text-brand-gold mb-1 sm:mb-2">
-                  {selectedItem.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-brand-cream/70 mb-3 sm:mb-4">{selectedItem.category}</p>
-                <p className="text-xs sm:text-sm md:text-base text-brand-cream/90 line-clamp-4 sm:line-clamp-none">{selectedItem.description}</p>
-              </div>
-            </motion.div>
-          </motion.div>
+        {selectedItem.image && (
+          <div className="relative w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden">
+            <Image
+              src={selectedItem.fullImage || selectedItem.image}
+              alt={selectedItem.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         )}
-      </AnimatePresence>
+
+        <div className="bg-brand-bronze/40 backdrop-blur-sm p-4 sm:p-6 md:p-8">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-serif font-bold text-brand-gold mb-1 sm:mb-2">
+            {selectedItem.title}
+          </h3>
+          <p className="text-xs sm:text-sm text-brand-cream/70 mb-3 sm:mb-4">{selectedItem.category}</p>
+          <p className="text-xs sm:text-sm md:text-base text-brand-cream/90 line-clamp-4 sm:line-clamp-none">
+            {selectedItem.description}
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </section>
   );
 };

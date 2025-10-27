@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
+import { OriginalSaree, GreenSaree, GoldenBlouse }  from "@/asset"
+import ImageManager from '@/components/ImageManager';
 
 export const metadata: Metadata = {
   title: 'About Us | Bindu\'s Stitching',
@@ -25,12 +26,11 @@ export default function AboutPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
             <div className="relative h-64 sm:h-80 md:h-96 lg:h-full md:min-h-96 rounded-2xl overflow-hidden soft-shadow">
-              <Image
-                src="/images/about.jpg"
+              <ImageManager
+                src={GoldenBlouse}
                 alt="Master Tailor Bindu"
                 fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                //  className="rounded-full"
               />
             </div>
 
