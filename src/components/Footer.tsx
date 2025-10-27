@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -37,48 +38,56 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: '📱', href: 'https://wa.me/919876543210', label: 'WhatsApp' },
-    { icon: '📞', href: 'tel:+919876543210', label: 'Call' },
-    { icon: '📧', href: 'mailto:contact@bindusstitching.com', label: 'Email' },
+    { icon: <FaWhatsapp />, href: 'https://wa.me/919876543210', label: 'WhatsApp' },
+    { icon: <FaPhoneAlt />, href: 'tel:+919876543210', label: 'Call' },
+    { icon: <FaEnvelope />, href: 'mailto:contact@bindusstitching.com', label: 'Email' },
   ];
 
   return (
-    <footer className="bg-brand-dark border-t border-brand-gold/20 mt-12 sm:mt-16 md:mt-20">
-      <div className="container py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+    <footer className="bg-brand-dark border-t border-brand-gold/20 mt-10 sm:mt-14 md:mt-20">
+      <div className="container mx-auto px-4 py-10 sm:py-12 md:py-16">
+        {/* Top Grid Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+          {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className="flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-brand-gold">✨</div>
+            <Link href="/" className="flex items-center gap-2 mb-4 justify-center sm:justify-start">
+              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-gold">✨</div>
               <div>
-                <div className="text-brand-gold font-serif text-sm sm:text-lg font-semibold">
-                  Bindu's Stitching
+                <div className="text-brand-gold font-serif text-base sm:text-lg font-semibold text-center sm:text-left">
+                  Bindu&apos;s Stitching
                 </div>
-                <p className="text-brand-lightgold text-xs sm:text-sm">Elegant Crafts</p>
+                <p className="text-brand-lightgold text-xs sm:text-sm text-center sm:text-left">
+                  Elegant Crafts
+                </p>
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-brand-cream/70">
+            <p className="text-xs sm:text-sm text-brand-cream/70 text-center sm:text-left leading-relaxed">
               Creating beautiful, custom-tailored garments with precision and passion.
             </p>
           </motion.div>
 
+          {/* Footer Sections */}
           {footerSections.map((section, idx) => (
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="text-center sm:text-left"
             >
-              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-xs sm:text-base">{section.title}</h4>
-              <ul className="space-y-1 sm:space-y-2">
+              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+                {section.title}
+              </h4>
+              <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-xs sm:text-sm text-brand-cream/70 hover:text-brand-gold transition-smooth"
+                      className="text-xs sm:text-sm text-brand-cream/70 hover:text-brand-gold transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -89,29 +98,33 @@ const Footer = () => {
           ))}
         </div>
 
+        {/* Bottom Section */}
         <div className="border-t border-brand-gold/20 pt-6 sm:pt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 items-center text-center sm:text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
+            {/* Social Links */}
             <div>
-              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-xs sm:text-base">Connect With Us</h4>
-              <div className="flex gap-3 sm:gap-4 justify-center sm:justify-start">
+              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+                Connect With Us
+              </h4>
+              <div className="flex gap-5 justify-center sm:justify-start">
                 {socialLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl sm:text-2xl hover:scale-110 transition-transform"
                     aria-label={link.label}
+                    className="text-2xl text-brand-cream hover:text-brand-gold hover:scale-110 transition-all duration-300"
                   >
                     {link.icon}
                   </a>
                 ))}
               </div>
             </div>
+
+            {/* Copyright */}
             <div className="text-xs sm:text-sm text-brand-cream/70">
-              <p>
-                &copy; {currentYear} Bindu's Stitching. All rights reserved.
-              </p>
+              <p>&copy; {currentYear} Bindu&apos;s Stitching. All rights reserved.</p>
               <p className="mt-1 sm:mt-2">Designed with ❤️ for elegance and craftsmanship.</p>
             </div>
           </div>

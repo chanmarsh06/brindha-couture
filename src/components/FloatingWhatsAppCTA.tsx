@@ -2,37 +2,28 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa'; // ✅ WhatsApp official icon
 
 const FloatingWhatsAppCTA = () => {
-  // Initialize isMobile based on window width on first render
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
   );
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
+    const handleScroll = () => setIsVisible(window.scrollY > 300);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
 
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Add event listeners
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-    const whatsappLink =
-  'https://wa.me/6385555688?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services';
-
+  const whatsappLink =
+    'https://wa.me/6385555688?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services';
 
   if (!isVisible) return null;
 
@@ -56,20 +47,26 @@ const FloatingWhatsAppCTA = () => {
           transition={isMobile ? {} : { duration: 3, repeat: Infinity }}
           className="relative"
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold blur-lg opacity-75"></div>
+          {/* Glowing background */}
+          <div className="absolute inset-0 rounded-full bg-green-400 blur-lg opacity-60"></div>
 
-          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-brand-gold to-brand-lightgold rounded-full flex items-center justify-center soft-shadow hover:scale-110 transition-transform cursor-pointer group">
-            <span className="text-xl sm:text-2xl md:text-3xl">💬</span>
+          {/* WhatsApp Circle Button */}
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full flex items-center justify-center soft-shadow hover:scale-110 transition-transform cursor-pointer group">
+            <FaWhatsapp
+              className="text-white group-hover:scale-110 transition-transform"
+              size={30}
+            />
 
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-brand-gold"
+              className="absolute inset-0 rounded-full border-2 border-white/70"
               animate={{ scale: [1, 1.2, 1] }}
               transition={isMobile ? { duration: 0 } : { duration: 2, repeat: Infinity }}
             />
           </div>
 
+          {/* Hover Tooltip */}
           <motion.div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-3 sm:translate-y-4 whitespace-nowrap bg-brand-dark/90 text-brand-gold text-xs sm:text-sm font-semibold px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-full soft-shadow hidden group-hover:block pointer-events-none"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-3 sm:translate-y-4 whitespace-nowrap bg-[#25D366]/90 text-white text-xs sm:text-sm font-semibold px-3 py-1 sm:py-2 rounded-full shadow-md hidden group-hover:block pointer-events-none"
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
           >

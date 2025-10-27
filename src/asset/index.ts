@@ -9,5 +9,6 @@ import EmbraceHeritage from '@/asset/Embrace-heritage.jpg';
 import FloralBohoVibes from '@/asset/Floral boho vibes.jpg';
 import ButterflyDesign from '@/asset/butterfly-design.jpg';
 import ElevateYourBridalLook from '@/asset/Elevate Your Bridal Look.jpg';
-
-export { GreenSaree, BlueSaree, RedSaree, OriginalSaree, Child,GoldenBlouse ,PecockDesign,EmbraceHeritage,ElevateYourBridalLook , ButterflyDesign,FloralBohoVibes};
+import CanvaLogo from '@/asset/canva logo.png';
+import Logo from '@/asset/B-logo.png';
+export { GreenSaree, BlueSaree, RedSaree, OriginalSaree, Child,GoldenBlouse ,PecockDesign,EmbraceHeritage,ElevateYourBridalLook , ButterflyDesign,FloralBohoVibes,CanvaLogo,Logo};

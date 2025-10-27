@@ -11,7 +11,10 @@ type ImageManagerProps = {
   className?: string;
   fill?: boolean;
   priority?: boolean;
-  sizes?: string; // 👈 Add this line
+  sizes?: string;
+  quality?: number; // 🔹 optional image quality control
+  loading?: 'lazy' | 'eager'; // 🔹 better loading control
+  placeholder?: 'blur' | 'empty'; // 🔹 optional blurred placeholder for static images
 };
 
 const ImageManager: React.FC<ImageManagerProps> = ({
@@ -22,21 +25,33 @@ const ImageManager: React.FC<ImageManagerProps> = ({
   className = '',
   fill = false,
   priority = false,
-  sizes, // 👈 Add this too
+  sizes,
+  quality,
+  loading = 'lazy',
+  placeholder,
 }) => {
-  const imageSrc = typeof src === 'string' ? src : src.src;
+  // Detect if the image is a StaticImageData (imported asset)
+  const isStatic = typeof src !== 'string';
+  const imageSrc = isStatic ? src.src : src;
+
+  // Use fallback width/height if not provided
+  const computedWidth = width ?? (isStatic ? src.width : undefined);
+  const computedHeight = height ?? (isStatic ? src.height : undefined);
 
   return (
-    <div className={fill ? 'relative w-full h-full' : ''}>
+    <div className={fill ? 'relative w-full h-full' : 'inline-block'}>
       <Image
         src={imageSrc}
         alt={alt}
-        width={fill ? undefined : width}
-        height={fill ? undefined : height}
+        width={fill ? undefined : computedWidth}
+        height={fill ? undefined : computedHeight}
         className={className}
         fill={fill}
         priority={priority}
-        sizes={sizes} // 👈 Forward it to <Image />
+        sizes={sizes}
+        quality={quality}
+        loading={loading}
+        placeholder={placeholder && isStatic ? placeholder : 'empty'}
       />
     </div>
   );
