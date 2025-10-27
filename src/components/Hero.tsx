@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, cubicBezier } from 'framer-motion';
+import { motion } from 'framer-motion';
 import GirlImage from "@/asset/bindu/original-saree.png"
 
 const Hero = () => {
@@ -10,28 +10,16 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: cubicBezier(0.25, 0.46, 0.45, 0.94) },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.85 },
-    visible: {
-      opacity: 1,
-      scale: 1.1,
-      transition: { duration: 1, ease: cubicBezier(0.25, 0.46, 0.45, 0.94) },
+      transition: { duration: 0.4 },
     },
   };
 
@@ -89,7 +77,7 @@ const Hero = () => {
         {/* Right Image */}
         <motion.div
           className="flex-1 w-full md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0 relative"
-          variants={imageVariants}
+          variants={itemVariants}
         >
           <div className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full overflow-hidden soft-shadow border-4 border-brand-gold/60">
             <Image
@@ -98,19 +86,17 @@ const Hero = () => {
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 240px, (max-width: 1024px) 320px, 448px"
+              quality={85}
             />
           </div>
 
           {/* Trusted Badge */}
-          <motion.div
-            className="absolute bottom-[-12px] right-[-12px] px-3 py-1 rounded-full bg-brand-dark/90 backdrop-blur-sm soft-shadow border border-brand-gold/40"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
+          <div className="absolute bottom-[-12px] right-[-12px] px-3 py-1 rounded-full bg-brand-dark/90 backdrop-blur-sm soft-shadow border border-brand-gold/40">
             <p className="text-xs sm:text-sm md:text-base font-semibold text-brand-gold">
               Trusted for Excellence ✨
             </p>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

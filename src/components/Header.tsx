@@ -44,6 +44,7 @@ const Header = () => {
             <Link
               key={link.href}
               href={link.href}
+              prefetch={true}
               className="text-sm lg:text-base text-brand-cream hover:text-brand-gold transition-smooth relative group"
             >
               {link.label}
@@ -104,6 +105,7 @@ const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={true}
                 className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-brand-cream hover:text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth"
                 onClick={() => setIsOpen(false)}
               >

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsAppCTA from '@/components/FloatingWhatsAppCTA';
+import FloatingWhatsAppCTA from '@/components/ClientWrapper';
 import { defaultMetadata, generateLocalBusinessSchema, generateOrgSchema } from '@/lib/seo';
 
 export const metadata: Metadata = defaultMetadata;
