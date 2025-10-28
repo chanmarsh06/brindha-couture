@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ContactFormData } from '@/types';
+import { Button, Input, TextArea } from '@/components';
+import { useValidation, commonValidators } from '@/hooks/useValidation';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -13,25 +15,47 @@ const ContactForm = () => {
     message: '',
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = 'Please enter a valid email';
-
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const validationRules = {
+    name: [
+      {
+        validate: commonValidators.required,
+        message: 'Name is required',
+      },
+    ],
+    email: [
+      {
+        validate: commonValidators.required,
+        message: 'Email is required',
+      },
+      {
+        validate: commonValidators.email,
+        message: 'Please enter a valid email',
+      },
+    ],
+    phone: [
+      {
+        validate: commonValidators.required,
+        message: 'Phone number is required',
+      },
+    ],
+    subject: [
+      {
+        validate: commonValidators.required,
+        message: 'Subject is required',
+      },
+    ],
+    message: [
+      {
+        validate: commonValidators.required,
+        message: 'Message is required',
+      },
+    ],
   };
+
+  const { errors, validate, clearError } = useValidation(validationRules);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,14 +63,14 @@ const ContactForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
+      clearError(name);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    if (!validate(formData)) return;
 
     setIsLoading(true);
 
@@ -86,127 +110,73 @@ const ContactForm = () => {
       className="space-y-6"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <div>
-          <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.name ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-            placeholder="Your name"
-            aria-label="Full name"
-            required
-          />
-          {errors.name && (
-            <p className="text-red-400 text-xs mt-1">{errors.name}</p>
-          )}
-        </div>
+        <Input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          label="Full Name"
+          placeholder="Your name"
+          error={errors.name}
+          required
+        />
 
-        <div>
-          <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.email ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-            placeholder="your@email.com"
-            aria-label="Email address"
-            required
-          />
-          {errors.email && (
-            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
-          )}
-        </div>
+        <Input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          label="Email Address"
+          placeholder="your@email.com"
+          error={errors.email}
+          required
+        />
 
         <div className="md:col-span-2">
-          <label htmlFor="phone" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Phone Number
-          </label>
-          <input
+          <Input
             type="tel"
-            id="phone"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.phone ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
+            label="Phone Number"
             placeholder="+91 9876543210"
-            aria-label="Phone number"
+            error={errors.phone}
             required
           />
-          {errors.phone && (
-            <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
-          )}
         </div>
       </div>
 
-      <div>
-        <label htmlFor="subject" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-          Subject
-        </label>
-        <input
-          type="text"
-          id="subject"
-          name="subject"
-          value={formData.subject}
-          onChange={handleInputChange}
-          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-            errors.subject ? 'border-red-500' : 'border-brand-gold/30'
-          } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-          placeholder="What is this about?"
-          aria-label="Subject"
-          required
-        />
-        {errors.subject && (
-          <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
-        )}
-      </div>
+      <Input
+        type="text"
+        name="subject"
+        value={formData.subject}
+        onChange={handleInputChange}
+        label="Subject"
+        placeholder="What is this about?"
+        error={errors.subject}
+        required
+      />
 
-      <div>
-        <label htmlFor="message" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleInputChange}
-          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-            errors.message ? 'border-red-500' : 'border-brand-gold/30'
-          } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth resize-none`}
-          placeholder="Your message..."
-          rows={5}
-          aria-label="Message"
-          required
-        />
-        {errors.message && (
-          <p className="text-red-400 text-xs mt-1">{errors.message}</p>
-        )}
-      </div>
+      <TextArea
+        name="message"
+        value={formData.message}
+        onChange={handleInputChange}
+        label="Message"
+        placeholder="Your message..."
+        rows={5}
+        error={errors.message}
+        required
+      />
 
-      <motion.button
+      <Button
         type="submit"
         disabled={isLoading}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full py-2 sm:py-3 text-xs sm:text-base rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Submit contact form"
+        isLoading={isLoading}
+        ariaLabel="Submit contact form"
+        className="w-full"
       >
-        {isLoading ? 'Sending...' : 'Send Message'}
-      </motion.button>
+        Send Message
+      </Button>
 
       {submitted && (
         <motion.div

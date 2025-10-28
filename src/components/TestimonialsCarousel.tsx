@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Testimonial } from '@/types';
 import ImageManager from './ImageManager';
+import { Button } from '@/components';
 import { GreenSaree, BlueSaree, OriginalSaree, RedSaree } from '@/asset';
 
 interface TestimonialsCarouselProps {
@@ -104,15 +105,16 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
           </AnimatePresence>
 
           <div className="flex items-center justify-between mt-6 sm:mt-8">
-            <button
+            <Button
               onClick={goToPrevious}
-              className="p-2 sm:p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
-              aria-label="Previous testimonial"
+              variant="primary"
+              className="p-2 sm:p-3"
+              ariaLabel="Previous testimonial"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </button>
+            </Button>
 
             <div className="flex gap-2 sm:gap-3">
               {testimonials.map((_, idx) => (
@@ -128,15 +130,16 @@ const TestimonialsCarousel = ({ testimonials }: TestimonialsCarouselProps) => {
               ))}
             </div>
 
-            <button
+            <Button
               onClick={goToNext}
-              className="p-2 sm:p-3 rounded-full bg-brand-gold text-brand-dark hover:bg-brand-lightgold transition-smooth"
-              aria-label="Next testimonial"
+              variant="primary"
+              className="p-2 sm:p-3"
+              ariaLabel="Next testimonial"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

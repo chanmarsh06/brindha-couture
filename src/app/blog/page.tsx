@@ -1,9 +1,6 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import { blogPosts } from '@/data/blog';
-
-import ImageManager from '@/components/ImageManager';
+import { PageHeader, ImageManager, Button } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Blog | Bindu\'s Stitching',
@@ -15,16 +12,10 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="gradient-brand py-12 md:py-16 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-brand-cream mb-4">
-            Blog & Resources
-          </h1>
-          <p className="text-lg text-brand-cream/80 max-w-2xl">
-            Tips, guides, and inspiration for tailoring, embroidery, and fashion.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Blog & Resources"
+        subtitle="Tips, guides, and inspiration for tailoring, embroidery, and fashion."
+      />
 
       <section className="py-16 md:py-24 bg-brand-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,12 +75,9 @@ export default function BlogPage() {
             <p className="text-brand-cream/70 mb-6">
               More articles coming soon. Subscribe to our newsletter for updates!
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2 rounded-full font-semibold text-brand-dark bg-gradient-to-r from-brand-gold to-brand-lightgold hover:shadow-glow transition-smooth"
-            >
+            <Button as="link" href="/contact">
               Get Updates
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

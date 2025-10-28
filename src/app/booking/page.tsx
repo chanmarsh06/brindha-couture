@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import BookingForm from '@/components/BookingForm';
+import { PageHeader, BookingForm } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Book Appointment | Bindu\'s Stitching',
@@ -9,16 +9,10 @@ export const metadata: Metadata = {
 export default function BookingPage() {
   return (
     <>
-      <section className="gradient-brand py-12 sm:py-14 md:py-16 lg:py-20 mt-14 sm:mt-16">
-        <div className="container mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-cream mb-3 sm:mb-4">
-            Book Your Appointment
-          </h1>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-cream/80 max-w-2xl">
-            Ready to get started? Fill out the form below and we'll confirm your booking details.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Book Your Appointment"
+        subtitle="Ready to get started? Fill out the form below and we'll confirm your booking details."
+      />
 
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-brand-dark">
         <div className="container mx-auto">

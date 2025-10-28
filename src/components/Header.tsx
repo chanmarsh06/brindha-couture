@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CanvaLogo, Logo } from '@/asset';
+import { Logo } from '@/asset';
 import ImageManager from './ImageManager';
+import { Button } from '@/components';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,21 +57,22 @@ const Header = () => {
             </Link>
           ))}
 
-          <a
+          <Button
+            as="link"
             href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 lg:px-6 py-2 rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark text-sm lg:text-base font-semibold hover:shadow-glow transition-smooth"
-            aria-label="Contact via WhatsApp"
+            size="md"
+            ariaLabel="Contact via WhatsApp"
           >
             WhatsApp
-          </a>
+          </Button>
         </div>
 
         {/* ✅ Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth flex-shrink-0"
+          className="md:hidden p-2 text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth flex-shrink-0 focus:outline-none"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
@@ -121,15 +123,17 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              <a
+              <Button
+                as="link"
                 href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center px-3 sm:px-4 py-2 text-sm sm:text-base rounded-full bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark font-semibold hover:shadow-glow transition-smooth"
+                size="md"
+                className="block w-full text-center"
                 onClick={() => setIsOpen(false)}
               >
                 WhatsApp
-              </a>
+              </Button>
             </div>
           </motion.div>
         )}

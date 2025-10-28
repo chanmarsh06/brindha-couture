@@ -26,7 +26,7 @@ const ImageManager: React.FC<ImageManagerProps> = ({
   fill = false,
   priority = false,
   sizes,
-  quality,
+  quality = 85,
   loading = 'lazy',
   placeholder,
 }) => {

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PortfolioItem } from '@/types';
+import { Button } from '@/components';
 
 interface PortfolioGalleryProps {
   items: PortfolioItem[];
@@ -45,17 +46,14 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
 
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           {categories.map((category) => (
-            <button
+            <Button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 sm:px-6 py-1 sm:py-2 text-xs sm:text-sm rounded-full font-semibold transition-smooth ${
-                selectedCategory === category
-                  ? 'bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark'
-                  : 'bg-brand-bronze/30 text-brand-cream hover:bg-brand-bronze/50 border border-brand-gold/30'
-              }`}
+              variant={selectedCategory === category ? 'primary' : 'secondary'}
+              size="sm"
             >
               {category}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -114,13 +112,14 @@ const PortfolioGallery = ({ items }: PortfolioGalleryProps) => {
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-xl sm:max-w-2xl max-h-[85vh] sm:max-h-[90vh]"
       >
-        <button
+        <Button
           onClick={() => setSelectedId(null)}
-          className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center hover:bg-brand-lightgold transition-smooth text-lg sm:text-xl md:text-2xl"
-          aria-label="Close lightbox"
+          variant="primary"
+          className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 p-0 text-lg sm:text-xl md:text-2xl"
+          ariaLabel="Close lightbox"
         >
           ✕
-        </button>
+        </Button>
 
         {selectedItem.image && (
           <div className="relative w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden">

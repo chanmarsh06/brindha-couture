@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookingFormData } from '@/types';
+import { Button, Input, TextArea, Select } from '@/components';
+import { useValidation, commonValidators } from '@/hooks/useValidation';
 
 const BookingForm = () => {
   const [formData, setFormData] = useState<BookingFormData>({
@@ -15,32 +17,60 @@ const BookingForm = () => {
     notes: '',
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
 
   const services = ['Kids Dress Stitching', 'Blouse Stitching', 'Aari Work', 'Custom Design'];
 
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = 'Please enter a valid email';
-
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, '')))
-      newErrors.phone = 'Please enter a valid 10-digit phone number';
-
-    if (!formData.service) newErrors.service = 'Please select a service';
-    if (!formData.date) newErrors.date = 'Date is required';
-    if (!formData.time) newErrors.time = 'Time is required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const validationRules = {
+    name: [
+      {
+        validate: commonValidators.required,
+        message: 'Name is required',
+      },
+    ],
+    email: [
+      {
+        validate: commonValidators.required,
+        message: 'Email is required',
+      },
+      {
+        validate: commonValidators.email,
+        message: 'Please enter a valid email',
+      },
+    ],
+    phone: [
+      {
+        validate: commonValidators.required,
+        message: 'Phone number is required',
+      },
+      {
+        validate: commonValidators.phone,
+        message: 'Please enter a valid 10-digit phone number',
+      },
+    ],
+    service: [
+      {
+        validate: commonValidators.required,
+        message: 'Please select a service',
+      },
+    ],
+    date: [
+      {
+        validate: commonValidators.required,
+        message: 'Date is required',
+      },
+    ],
+    time: [
+      {
+        validate: commonValidators.required,
+        message: 'Time is required',
+      },
+    ],
   };
+
+  const { errors, validate, clearError } = useValidation(validationRules);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -48,7 +78,7 @@ const BookingForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
+      clearError(name);
     }
   };
 
@@ -61,7 +91,7 @@ const BookingForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    if (!validate(formData as Record<string, unknown>)) return;
 
     setIsLoading(true);
 
@@ -116,140 +146,71 @@ const BookingForm = () => {
       className="space-y-6"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <div>
-          <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.name ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-            placeholder="Your name"
-            aria-label="Full name"
-            required
-          />
-          {errors.name && (
-            <p className="text-red-400 text-xs mt-1">{errors.name}</p>
-          )}
-        </div>
+        <Input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          label="Full Name"
+          placeholder="Your name"
+          error={errors.name}
+          required
+        />
 
-        <div>
-          <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.email ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-            placeholder="your@email.com"
-            aria-label="Email address"
-            required
-          />
-          {errors.email && (
-            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
-          )}
-        </div>
+        <Input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          label="Email Address"
+          placeholder="your@email.com"
+          error={errors.email}
+          required
+        />
 
-        <div>
-          <label htmlFor="phone" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.phone ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth`}
-            placeholder="+91 9876543210"
-            aria-label="Phone number"
-            required
-          />
-          {errors.phone && (
-            <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
-          )}
-        </div>
+        <Input
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleInputChange}
+          label="Phone Number"
+          placeholder="+91 9876543210"
+          error={errors.phone}
+          required
+        />
 
-        <div>
-          <label htmlFor="service" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Select Service
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.service ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
-            aria-label="Service selection"
-            required
-          >
-            <option value="">Choose a service...</option>
-            {services.map((service) => (
-              <option key={service} value={service} className="bg-brand-dark text-xs sm:text-base">
-                {service}
-              </option>
-            ))}
-          </select>
-          {errors.service && (
-            <p className="text-red-400 text-xs mt-1">{errors.service}</p>
-          )}
-        </div>
+        <Select
+          name="service"
+          value={formData.service}
+          onChange={handleInputChange}
+          label="Select Service"
+          error={errors.service}
+          options={services.map((service) => ({
+            value: service,
+            label: service,
+          }))}
+          required
+        />
 
-        <div>
-          <label htmlFor="date" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Preferred Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.date ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
-            aria-label="Preferred date"
-            required
-          />
-          {errors.date && (
-            <p className="text-red-400 text-xs mt-1">{errors.date}</p>
-          )}
-        </div>
+        <Input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleInputChange}
+          label="Preferred Date"
+          error={errors.date}
+          required
+        />
 
-        <div>
-          <label htmlFor="time" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-            Preferred Time
-          </label>
-          <input
-            type="time"
-            id="time"
-            name="time"
-            value={formData.time}
-            onChange={handleInputChange}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border text-xs sm:text-base ${
-              errors.time ? 'border-red-500' : 'border-brand-gold/30'
-            } text-brand-cream focus:outline-none focus:border-brand-gold transition-smooth`}
-            aria-label="Preferred time"
-            required
-          />
-          {errors.time && (
-            <p className="text-red-400 text-xs mt-1">{errors.time}</p>
-          )}
-        </div>
+        <Input
+          type="time"
+          name="time"
+          value={formData.time}
+          onChange={handleInputChange}
+          label="Preferred Time"
+          error={errors.time}
+          required
+        />
       </div>
 
       <div>
@@ -277,32 +238,24 @@ const BookingForm = () => {
         </label>
       </div>
 
-      <div>
-        <label htmlFor="notes" className="block text-xs sm:text-sm font-semibold text-brand-gold mb-1 sm:mb-2">
-          Additional Notes
-        </label>
-        <textarea
-          id="notes"
-          name="notes"
-          value={formData.notes}
-          onChange={handleInputChange}
-          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-brand-dark border border-brand-gold/30 text-xs sm:text-base text-brand-cream placeholder-brand-cream/40 focus:outline-none focus:border-brand-gold transition-smooth resize-none"
-          placeholder="Any special requirements or design preferences..."
-          rows={4}
-          aria-label="Additional notes"
-        />
-      </div>
+      <TextArea
+        name="notes"
+        value={formData.notes}
+        onChange={handleInputChange}
+        label="Additional Notes"
+        placeholder="Any special requirements or design preferences..."
+        rows={4}
+      />
 
-      <motion.button
+      <Button
         type="submit"
         disabled={isLoading}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full py-2 sm:py-3 text-xs sm:text-base rounded-full font-semibold bg-gradient-to-r from-brand-gold to-brand-lightgold text-brand-dark hover:shadow-glow transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
+        isLoading={isLoading}
         aria-label="Submit booking form"
+        className="w-full"
       >
-        {isLoading ? 'Submitting...' : 'Book Appointment'}
-      </motion.button>
+        Book Appointment
+      </Button>
 
       {submitted && (
         <motion.div
