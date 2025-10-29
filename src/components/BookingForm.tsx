@@ -88,35 +88,44 @@ const BookingForm = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    if (!validate(formData as Record<string, unknown>)) return;
+  if (!validate(formData as unknown as Record<string, unknown>)) return;
 
-    setIsLoading(true);
+  setIsLoading(true);
 
-    try {
-      const data = new FormData();
-      data.append('name', formData.name);
-      data.append('email', formData.email);
-      data.append('phone', formData.phone);
-      data.append('service', formData.service);
-      data.append('date', formData.date);
-      data.append('time', formData.time);
-      data.append('notes', formData.notes);
-      if (file) {
-        data.append('measurements', file);
-      }
+  // 🧾 Prepare WhatsApp message
+  const whatsappMessage = `Hi! I'd like to book an appointment.
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service: ${formData.service}
+Date: ${formData.date}
+Time: ${formData.time}
+Notes: ${formData.notes}`;
 
-      const whatsappMessage = `Hi! I'd like to book an appointment.\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nDate: ${formData.date}\nTime: ${formData.time}\nNotes: ${formData.notes}`;
+  try {
+    // 📤 Send data to backend
+    const res = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-      const encodedMessage = encodeURIComponent(whatsappMessage);
-      window.open(
-        `https://wa.me/919876543210?text=${encodedMessage}`,
-        '_blank'
-      );
+    const result = await res.json();
 
+    if (result.success) {
+      // ✅ Show success UI first
       setSubmitted(true);
+
+      // ⏳ Wait 2 seconds, then redirect to WhatsApp
+      setTimeout(() => {
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        window.open(`https://wa.me/6385555688?text=${encodedMessage}`, '_blank');
+      }, 2000);
+
+      // 🧹 Reset form
       setFormData({
         name: '',
         email: '',
@@ -129,12 +138,17 @@ const BookingForm = () => {
       setFile(null);
 
       setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setIsLoading(false);
+    } else {
+      alert('❌ Something went wrong while submitting your booking. Please try again.');
     }
-  };
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('⚠️ Unable to send booking at the moment. Please try again later.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <motion.form

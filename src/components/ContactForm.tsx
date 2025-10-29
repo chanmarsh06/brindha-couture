@@ -70,7 +70,7 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validate(formData)) return;
+    if (!validate(formData as unknown as Record<string, unknown>)) return;
 
     setIsLoading(true);
 

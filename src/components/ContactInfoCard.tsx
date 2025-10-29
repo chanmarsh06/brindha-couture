@@ -7,7 +7,7 @@ interface ContactInfoCardProps {
   title: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  variant?: 'default' | 'highlighted';
+  variant?: 'default' | 'highlighted' | 'gradient';
   className?: string;
 }
 
