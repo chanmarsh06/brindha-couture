@@ -38,15 +38,15 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <FaWhatsapp />, href: 'https://wa.me/919876543210', label: 'WhatsApp' },
-    { icon: <FaPhoneAlt />, href: 'tel:+919876543210', label: 'Call' },
+    { icon: <FaWhatsapp />, href: 'https://wa.me/6385555688', label: 'WhatsApp' },
+    { icon: <FaPhoneAlt />, href: 'tel:+916385555688', label: 'Call' },
     { icon: <FaEnvelope />, href: 'mailto:contact@bindusstitching.com', label: 'Email' },
   ];
 
   return (
     <footer className="bg-brand-dark border-t border-brand-gold/20 mt-10 sm:mt-14 md:mt-20">
-      <div className="container mx-auto px-4 py-10 sm:py-12 md:py-16">
-        {/* Top Grid Section */}
+      <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
+        {/* ==== Top Grid Section ==== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Brand Section */}
           <motion.div
@@ -54,8 +54,11 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className="flex items-center gap-2 mb-4 justify-center sm:justify-start">
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-gold">✨</div>
+            <Link
+              href="/"
+              className="flex items-center gap-2 mb-4 justify-center sm:justify-start"
+            >
+              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-gold animate-pulse">✨</div>
               <div>
                 <div className="text-brand-gold font-serif text-base sm:text-lg font-semibold text-center sm:text-left">
                   Bindu&apos;s Stitching
@@ -65,6 +68,7 @@ const Footer = () => {
                 </p>
               </div>
             </Link>
+
             <p className="text-xs sm:text-sm text-brand-cream/70 text-center sm:text-left leading-relaxed">
               Creating beautiful, custom-tailored garments with precision and passion.
             </p>
@@ -79,7 +83,7 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="text-center sm:text-left"
             >
-              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-sm sm:text-base border-b border-brand-gold/30 pb-2 inline-block">
                 {section.title}
               </h4>
               <ul className="space-y-2">
@@ -87,7 +91,7 @@ const Footer = () => {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-xs sm:text-sm text-brand-cream/70 hover:text-brand-gold transition-colors duration-300"
+                      className="text-xs sm:text-sm text-brand-cream/70 hover:text-brand-gold transition-all duration-300 hover:tracking-wide"
                     >
                       {link.label}
                     </Link>
@@ -98,35 +102,32 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-brand-gold/20 pt-6 sm:pt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
-            {/* Social Links */}
-            <div>
-              <h4 className="text-brand-gold font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
-                Connect With Us
-              </h4>
-              <div className="flex gap-5 justify-center sm:justify-start">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    className="text-2xl text-brand-cream hover:text-brand-gold hover:scale-110 transition-all duration-300"
-                  >
-                    {link.icon}
-                  </a>
-                ))}
-              </div>
+        {/* ==== Bottom Section ==== */}
+        <div className="border-t border-brand-gold/20 pt-6 sm:pt-8 text-center">
+          <div className="flex flex-col items-center justify-center gap-4">
+            {/* Social Icons */}
+            <div className="flex gap-6">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="text-2xl text-brand-cream hover:text-brand-gold hover:scale-110 transition-all duration-300"
+                >
+                  {link.icon}
+                </a>
+              ))}
             </div>
 
             {/* Copyright */}
-            <div className="text-xs sm:text-sm text-brand-cream/70">
-              <p>&copy; {currentYear} Bindu&apos;s Stitching. All rights reserved.</p>
-              <p className="mt-1 sm:mt-2">Designed with ❤️ for elegance and craftsmanship.</p>
-            </div>
+            <p className="text-xs sm:text-sm text-brand-cream/70">
+              &copy; {currentYear} Bindu&apos;s Stitching — All Rights Reserved.
+            </p>
+            <p className="text-sm text-brand-gold font-semibold">
+              Crafted with ❤️ by <span className="text-brand-lightgold hover:text-brand-gold transition-all">@chan</span>
+            </p>
           </div>
         </div>
       </div>

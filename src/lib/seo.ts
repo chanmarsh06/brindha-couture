@@ -7,7 +7,7 @@ export function generateLocalBusinessSchema() {
     name: "Bindu's Stitching",
     description: 'Expert custom tailoring for kids dresses, blouses, and Aari embroidery work',
     url: 'https://bindusstitching.com',
-    telephone: '+919876543210',
+    telephone: '+916385555688',
     email: 'contact@bindusstitching.com',
     address: {
       '@type': 'PostalAddress',
@@ -35,7 +35,7 @@ export function generateLocalBusinessSchema() {
     sameAs: [
       'https://instagram.com',
       'https://facebook.com',
-      'https://wa.me/919876543210',
+      'https://wa.me/6385555688',
     ],
     image: 'https://bindusstitching.com/images/hero.jpg',
     geo: {
@@ -97,13 +97,13 @@ export function generateOrgSchema() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      telephone: '+919876543210',
+      telephone: '+916385555688',
       email: 'contact@bindusstitching.com',
     },
     sameAs: [
       'https://instagram.com',
       'https://facebook.com',
-      'https://wa.me/919876543210',
+      'https://wa.me/6385555688',
     ],
   };
 }

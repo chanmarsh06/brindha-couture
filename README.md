@@ -218,7 +218,7 @@ git push origin main
 ### Environment Variables (if needed)
 Create a `.env.local` file for development:
 ```env
-NEXT_PUBLIC_WHATSAPP_NUMBER=919876543210
+NEXT_PUBLIC_WHATSAPP_NUMBER=6385555688
 NEXT_PUBLIC_BUSINESS_EMAIL=contact@bindusstitching.com
 ```
 
@@ -361,4 +361,4 @@ This project is proprietary. All rights reserved © Bindu's Stitching
 For questions or support:
 - 📞 +91 98765 43210
 - 📧 contact@bindusstitching.com
-- 💬 [WhatsApp](https://wa.me/919876543210)
+- 💬 [WhatsApp](https://wa.me/6385555688)

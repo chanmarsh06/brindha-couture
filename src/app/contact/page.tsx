@@ -36,7 +36,7 @@ export default function ContactPage() {
   const phoneNumbers = (
     <div className="space-y-1">
       <a
-        href="tel:+919876543210"
+        href="tel:+916385555688"
         className="block text-sm text-brand-cream/80 hover:text-brand-gold transition-smooth"
       >
         +91 98765 43210
@@ -45,7 +45,7 @@ export default function ContactPage() {
         href="tel:+919876543211"
         className="block text-sm text-brand-cream/80 hover:text-brand-gold transition-smooth"
       >
-        +91 98765 43211
+        +91 63855 55688
       </a>
     </div>
   );

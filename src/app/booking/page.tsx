@@ -35,12 +35,12 @@ export default function BookingPage() {
               <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">📞</div>
               <h3 className="text-lg sm:text-xl font-serif font-bold text-brand-gold mb-2">Call Us</h3>
               <p className="text-xs sm:text-sm md:text-base text-brand-cream/70">
-                <a href="tel:+919876543210" className="hover:text-brand-gold transition-smooth">
+                <a href="tel:+916385555688" className="hover:text-brand-gold transition-smooth">
                   +91 98765 43210
                 </a>
                 <br />
                 <a href="tel:+919876543211" className="hover:text-brand-gold transition-smooth">
-                  +91 98765 43211
+                  +91 63855 55688
                 </a>
               </p>
             </div>

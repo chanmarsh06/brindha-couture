@@ -79,7 +79,7 @@ const ContactForm = () => {
 
       const encodedMessage = encodeURIComponent(whatsappMessage);
       window.open(
-        `https://wa.me/919876543210?text=${encodedMessage}`,
+        `https://wa.me/6385555688?text=${encodedMessage}`,
         '_blank'
       );
 

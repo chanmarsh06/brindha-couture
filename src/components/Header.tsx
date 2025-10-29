@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from '@/asset';
 import ImageManager from './ImageManager';
@@ -9,6 +10,14 @@ import { Button } from '@/components';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -45,21 +54,32 @@ const Header = () => {
 
         {/* ✅ Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              prefetch={true}
-              className="text-sm lg:text-base text-brand-cream hover:text-brand-gold transition-smooth relative group"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-gold to-accent-green group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = isActiveLink(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                prefetch={true}
+                className={`text-sm lg:text-base transition-smooth relative group ${
+                  isActive 
+                    ? 'text-brand-gold font-semibold' 
+                    : 'text-brand-cream hover:text-brand-gold'
+                }`}
+              >
+                {link.label}
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-gold to-accent-green transition-all duration-300 ${
+                  isActive 
+                    ? 'w-full' 
+                    : 'w-0 group-hover:w-full'
+                }`}></span>
+              </Link>
+            );
+          })}
 
           <Button
             as="link"
-            href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
+            href="https://wa.me/6385555688?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
             target="_blank"
             rel="noopener noreferrer"
             size="md"
@@ -112,20 +132,27 @@ const Header = () => {
             className="md:hidden bg-brand-dark/98 border-t border-brand-gold/20"
           >
             <div className="container py-3 space-y-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  prefetch={true}
-                  className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-brand-cream hover:text-brand-gold hover:bg-brand-bronze/20 rounded-lg transition-smooth"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = isActiveLink(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    prefetch={true}
+                    className={`block px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg transition-smooth ${
+                      isActive
+                        ? 'text-brand-gold bg-brand-gold/10 font-semibold border border-brand-gold/30'
+                        : 'text-brand-cream hover:text-brand-gold hover:bg-brand-bronze/20'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <Button
                 as="link"
-                href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
+                href="https://wa.me/6385555688?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
                 target="_blank"
                 rel="noopener noreferrer"
                 size="md"
